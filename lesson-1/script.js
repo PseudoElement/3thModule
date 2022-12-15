@@ -4,16 +4,26 @@ function task1(arr) {
 }
 // task1([1, 2, 56, 28, 90, 5, 6]);
 /////////////////////////////////////////////////////////////////////////
+// function task2(arr) {
+//   const arrUnique = [];
+//   arr.forEach((el) => {/////////////////////<----------------Вот здесь как использовтаь reduce, чтобы получить arrUnique
+//     if (!arrUnique.includes(el)) {
+//       arrUnique.push(el);
+//     }
+//   });
+//   return console.log(arrUnique);
+// }
 function task2(arr) {
-  const arrUnique = [];
-  arr.forEach((el) => {/////////////////////<----------------Вот здесь как использовтаь reduce, чтобы получить arrUnique
-    if (!arrUnique.includes(el)) {
-      arrUnique.push(el);
+  return arr.reduce((acc, el) => {
+    if (acc.length > 0) {
+      if (!acc.includes(el)) acc.push(el);
+      return acc;
     }
-  });
-  return console.log(arrUnique);
+    acc.push(el);
+    return acc;
+  }, []);
 }
-// task2([1, 2, 3, 4, 4, 5, 2, 9, 4]);
+task2([1, 2, 3, 4, 4, 5, 2, 9, 4]);
 ///////////////////////////////////////////////////////////////
 function task3(arr) {
   const adultUsers = [];
