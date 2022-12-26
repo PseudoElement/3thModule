@@ -4,16 +4,26 @@ function task1(arr) {
 }
 // task1([1, 2, 56, 28, 90, 5, 6]);
 /////////////////////////////////////////////////////////////////////////
+// function task2(arr) {
+//   const arrUnique = [];
+//   arr.forEach((el) => {/////////////////////<----------------Вот здесь как использовтаь reduce, чтобы получить arrUnique
+//     if (!arrUnique.includes(el)) {
+//       arrUnique.push(el);
+//     }
+//   });
+//   return console.log(arrUnique);
+// }
 function task2(arr) {
-  const arrUnique = [];
-  arr.forEach((el) => {
-    if (!arrUnique.includes(el)) {
-      arrUnique.push(el);
+  return arr.reduce((acc, el) => {
+    if (acc.length > 0) {
+      if (!acc.includes(el)) acc.push(el);
+      return acc;
     }
-  });
-  return console.log(arrUnique);
+    acc.push(el);
+    return acc;
+  }, []);
 }
-// task2([1, 2, 3, 4, 4, 5, 2, 9, 4]);
+task2([1, 2, 3, 4, 4, 5, 2, 9, 4]);
 ///////////////////////////////////////////////////////////////
 function task3(arr) {
   const adultUsers = [];
@@ -21,33 +31,17 @@ function task3(arr) {
   arr.forEach((user) => {
     user.age >= 18 ? adultUsers.push(user) : youngUsers.push(user);
   });
-  const adultUsersSorted = adultUsers.reduce((newArr, el) => {
-    console.log(newArr);
-    if (newArr.length > 0) {
-      for (let user of newArr) {
-        console.log(user.age, el.age);
-        if (user.age > el.age) {
-          return newArr.splice(newArr.indexOf(user), 0, el);
-        } else {
-          return newArr.push(el);
-        }
-      }
-      return newArr;
-    }
-    newArr.push(el);
-    return newArr;
-  }, []);
-  // adultUsers.sort((el1, el2) => Number(el1.age) - Number(el2.age));
-  // youngUsers.sort((el1, el2) => Number(el1.age) - Number(el2.age));
+  adultUsers.sort((el1, el2) => Number(el1.age) - Number(el2.age));
+  youngUsers.sort((el1, el2) => Number(el1.age) - Number(el2.age));
   return console.log(adultUsers, youngUsers);
 }
-task3([
-  { name: "Ivan", age: 18 },
-  { name: "Petr", age: 12 },
-  { name: "Sidor", age: 25 },
-  { name: "Pavel", age: 24 },
-  { name: "Sasha", age: 29 },
-]);
+// task3([
+//   { name: "Ivan", age: 18 },
+//   { name: "Petr", age: 12 },
+//   { name: "Sidor", age: 25 },
+//   { name: "Pavel", age: 24 },
+//   { name: "Sasha", age: 29 },
+// ]);
 /////////////////////////////////////////////////////////////////////////
 function task3_part2(arr) {
   arr.forEach((user) => {
